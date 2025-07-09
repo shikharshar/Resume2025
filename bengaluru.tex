@@ -1,22 +1,22 @@
-% Single file resume - includes all components
+% Single file resume - latexonline.cc compatible version
 \PassOptionsToPackage{dvipsnames}{xcolor}
 
 \documentclass[10pt,a4paper]{article}
 
-% Class definitions from altacv.cls integrated here
+% Simplified packages for online compilation
 \usepackage[margin=2cm]{geometry}
-\usepackage{fontawesome}
+% Removed fontawesome for online compatibility
 \usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\usepackage[skins]{tcolorbox}
+% Removed tikz for online compatibility
+% Removed tikzlibrary for online compatibility
+% Removed tcolorbox for online compatibility
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{etoolbox}
 \usepackage{dashrule}
 \usepackage{multirow,tabularx}
 \usepackage{changepage}
-\usepackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
+% Removed biblatex for online compatibility
 \usepackage{afterpage}
 
 % Override geometry for altacv layout
@@ -36,11 +36,11 @@
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{black!80!white}
 
-% Command definitions from altacv.cls
-\newcommand{\itemmarker}{{\small\textbullet}}
-\newcommand{\ratingmarker}{\faCircle}
-\renewcommand{\itemmarker}{{\small\textbullet}}
-\renewcommand{\ratingmarker}{\faCircle}
+% Command definitions from altacv.cls - simplified for online compatibility
+\newcommand{\itemmarker}{\textbullet}
+\newcommand{\ratingmarker}{\textbullet}
+\renewcommand{\itemmarker}{\textbullet}
+\renewcommand{\ratingmarker}{\textbullet}
 
 \setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vskip0.25\baselineskip}
 \setlist[itemize]{label=\itemmarker}
@@ -52,15 +52,15 @@
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
   {\end{adjustwidth}}
 
-% Symbol definitions
-\newcommand{\emailsymbol}{\faAt}
-\newcommand{\phonesymbol}{\faPhone}
-\newcommand{\homepagesymbol}{\faChain}
-\newcommand{\locationsymbol}{\faMapMarker}
-\newcommand{\linkedinsymbol}{\faLinkedin}
-\newcommand{\twittersymbol}{\faTwitter}
-\newcommand{\githubsymbol}{\faGithub}
-\newcommand{\mailsymbol}{\faEnvelope}
+% Symbol definitions - text alternatives for FontAwesome
+\newcommand{\emailsymbol}{@}
+\newcommand{\phonesymbol}{Phone}
+\newcommand{\homepagesymbol}{Web}
+\newcommand{\locationsymbol}{Location}
+\newcommand{\linkedinsymbol}{LinkedIn}
+\newcommand{\twittersymbol}{Twitter}
+\newcommand{\githubsymbol}{GitHub}
+\newcommand{\mailsymbol}{Email}
 
 \newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
 
@@ -122,8 +122,9 @@
   \smallskip
 }
 
+% Simplified cvtag without tikz
 \newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \fbox{\small #1}\hspace{0.3em}%
 }
 
 \newenvironment{cvparagraph}{\begin{quote}}{\end{quote}}
@@ -193,19 +194,19 @@ CGPA - 7.20/10
 {\color{heading}\LARGE\bfseries\MakeUppercase{Achievements}}\\[-1ex]%
 {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 
-\cvachievement{\faTrophy}{2022}{Secured \textbf{99.53 Percentile} in Indian Institute of Management Common Admission Test}
+\cvachievement{🏆}{2022}{Secured \textbf{99.53 Percentile} in Indian Institute of Management Common Admission Test}
 
 \divider
 
-\cvachievement{\faTrophy}{2021}{Secured \textbf{1st prize} in the Inter IIT Art Competition on the theme of Emotion}
+\cvachievement{🏆}{2021}{Secured \textbf{1st prize} in the Inter IIT Art Competition on the theme of Emotion}
 
 \divider
 
-\cvachievement{\faTrophy}{2018}{Secured \textbf{All India Rank 4719} in Joint Entrance Exam (JEE) - Advanced among the 0.16 million candidates }
+\cvachievement{🏆}{2018}{Secured \textbf{All India Rank 4719} in Joint Entrance Exam (JEE) - Advanced among the 0.16 million candidates }
 
 \divider
 
-\cvachievement{\faTrophy}{2018}{Secured \textbf{All India Rank 7733} in Joint Entrance Exam (JEE) - Mains among the 1 million candidates }
+\cvachievement{🏆}{2018}{Secured \textbf{All India Rank 7733} in Joint Entrance Exam (JEE) - Mains among the 1 million candidates }
 
 \medskip
 }
@@ -220,10 +221,8 @@ CGPA - 7.20/10
 \raggedright
 
 \newcommand{\cvtagwhite}[1]{%
-  \mbox{\tikz[baseline=-0.6ex]%
-    \node[anchor=base, draw=none, rounded corners=0.2ex, inner sep=0.4ex, text=white, fill=white]%
-    {\small\strut #1};}%
-  }%
+  \fbox{\small #1}\hspace{0.3em}%
+}
 
 \cvname{\textcolor{SlateGrey}{SHIKHAR SHARMA}}
 \cvtagline{Product and Growth ( Ex-Founder | Driving Growth in Fintech \& D2C)}
@@ -233,7 +232,7 @@ CGPA - 7.20/10
   \mailaddress {shikharparhoon@gmail.com}
   \location {Bangalore, India}
   \linkedin  {\href{https://linkedin.com/in/shikharparhoon}{\textcolor{SlateGrey}{linkedin}}}
-  \faGlobe \, {\href{https://pleasant-fifth-cc3.notion.site/Shikhar-Sharma-Backend-Developer-8f5b5fa02dc94425a97e6fefac0bea9a}{\textcolor{SlateGrey}{website}}}
+  Web \, {\href{https://pleasant-fifth-cc3.notion.site/Shikhar-Sharma-Backend-Developer-8f5b5fa02dc94425a97e6fefac0bea9a}{\textcolor{SlateGrey}{website}}}
 }
 
 \begin{fullwidth}
