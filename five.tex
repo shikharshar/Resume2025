@@ -1,0 +1,215 @@
+\documentclass[a4paper, 10pt]{article}
+
+%=========================================================================================
+%   PACKAGES
+%=========================================================================================
+\usepackage[
+  a4paper,
+  margin=0.5in,
+  left=0.4in,
+  right=0.4in,
+  top=0.4in,
+  bottom=0.4in,
+]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lato}
+\usepackage{fontawesome}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{changepage}
+\usepackage{afterpage}
+\usepackage[
+  colorlinks=true,
+  urlcolor=MidnightBlue,
+  linkcolor=MidnightBlue,
+  pdftitle={Resume},
+  pdfauthor={Shikhar Sharma},
+]{hyperref}
+\usepackage{multirow}
+\usepackage{dashrule}
+
+%=========================================================================================
+%   STYLE & LAYOUT
+%=========================================================================================
+
+% Define Colors
+\definecolor{primary}{HTML}{000000} % Black for text
+\definecolor{secondary}{HTML}{555555} % Dark Gray for subheadings
+\definecolor{highlight}{HTML}{0077B5} % A professional blue for links/highlights
+
+\pagestyle{empty} % No page numbers
+\setlength{\parindent}{0pt} % No paragraph indentation
+\setlength{\topskip}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+
+% Define a robust two-column layout
+\newlength{\sidebarwidth}
+\setlength{\sidebarwidth}{0.3\textwidth}
+\newlength{\mainwidth}
+\setlength{\mainwidth}{\dimexpr\textwidth-\sidebarwidth-0.05\textwidth\relax}
+
+%=========================================================================================
+%   CUSTOM COMMANDS
+%=========================================================================================
+
+% Name and Tagline
+\newcommand{\cvname}[1]{{\fontsize{28}{32}\bfseries\color{primary}#1}}
+\newcommand{\cvtagline}[1]{{\fontsize{11}{14}\color{secondary}#1}}
+
+% Contact Info
+\newcommand{\cvcontact}[3]{%
+    \ifx&#1&%
+    \else%
+    {\color{secondary}\faicon{#1} \href{#2}{\strut #3}}\quad%
+    \fi%
+}
+
+% Header
+\newcommand{\makecvheader}{%
+  \begin{center}
+    \cvname{\thecvname} \\
+    \vspace{4pt}
+    \cvtagline{\thecvtagline} \\
+    \vspace{6pt}
+    \fontsize{9}{12}\selectfont
+    \thecvcontact
+  \end{center}
+  \vspace{-8pt}
+}
+
+% Section Heading
+\newcommand{\cvsection}[1]{%
+  \vspace{8pt}
+  {\fontsize{14}{18}\bfseries\color{primary}\MakeUppercase{#1}}
+  \vspace{2pt}
+  {\color{highlight}\hrule height 1.2pt}
+  \vspace{6pt}
+}
+
+% Sidebar Section Heading
+\newcommand{\cvsidebarsection}[1]{%
+  \vspace{8pt}
+  {\fontsize{12}{16}\bfseries\color{primary}#1}
+  \vspace{2pt}
+  {\color{highlight!50}\hdashrule{\linewidth}{0.8pt}{2pt}}
+  \vspace{6pt}
+}
+
+% Work/Education Entry
+\newenvironment{cvevent}[4]{%
+  \item[]\begin{tabularx}{\linewidth}{@{}p{0.7\linewidth}Xr@{}}
+    \textbf{\color{primary}#1} & \textbf{\color{secondary}#3} \\
+    \textit{\color{secondary}#2} & \textit{\color{secondary}#4}
+  \end{tabularx}%
+  \vspace{2pt}
+  \begin{itemize}[leftmargin=1.5em, itemsep=2pt, parsep=0pt, topsep=3pt, label={\color{highlight}\textbullet}]%
+}{%
+  \end{itemize}
+  \vspace{4pt}
+}
+
+% Skill Tag
+\newcommand{\cvskill}[1]{%
+    \tikz[baseline=(char.base)]\node[
+        fill=secondary!15,
+        rounded corners=3pt,
+        inner xsep=4pt,
+        inner ysep=2pt,
+        text height=1.5ex,
+        text depth=0.25ex
+    ] (char) {\strut\small #1};%
+}
+
+% Achievement Item
+\newcommand{\cvachievement}[1]{%
+    \item \strut #1
+}
+
+%=========================================================================================
+%   CONTENT - PERSONAL INFORMATION
+%=========================================================================================
+
+\newcommand{\thecvname}{Shikhar Sharma}
+\newcommand{\thecvtagline}{Program Manager | Driving CX \& Process Improvements with Data}
+\newcommand{\thecvcontact}{%
+  \cvcontact{envelope}{mailto:shikhar.sharma.iitkgp@gmail.com}{shikhar.sharma.iitkgp@gmail.com}
+  \cvcontact{phone}{tel:+919876543210}{+91-98765-43210}
+  \cvcontact{linkedin}{https://www.linkedin.com/in/shikhar-sharma-iit-kgp/}{/in/shikhar-sharma-iit-kgp}
+  \cvcontact{github}{https://github.com/Shikhar-Sharma-11}{/Shikhar-Sharma-11}
+}
+
+% Sidebar content definition
+\newcommand{\sidebarcontent}{%
+    \cvsidebarsection{Skills}
+    \cvskill{Program Management} \cvskill{Project Management} \par\vspace{4pt}
+    \cvskill{Root Cause Analysis} \cvskill{Process Improvement} \par\vspace{4pt}
+    \cvskill{Stakeholder Mgmt.} \cvskill{Advanced Excel} \par\vspace{4pt}
+    \cvskill{Data Analysis} \cvskill{Python} \cvskill{SQL} \par\vspace{4pt}
+    \cvskill{Agile Methodologies} \cvskill{JIRA} \cvskill{Figma}
+
+    \cvsidebarsection{Education}
+    \textbf{Indian Institute of Technology, Kharagpur} \\
+    \textit{\small B.Tech in Mechanical Engineering} \\
+    \textit{\small 2017 – 2022} \\
+    \textit{\small CGPA: 8.34 / 10.0}
+
+    \cvsidebarsection{Achievements}
+    \begin{itemize}[leftmargin=1.5em, itemsep=2pt, parsep=0pt, topsep=3pt, label={}]
+        \cvachievement{Secured \textbf{99.53 Percentile} in CAT among 230K candidates.}
+        \cvachievement{Secured \textbf{All India Rank 4719} in JEE Advanced among 160K candidates.}
+        \cvachievement{Secured \textbf{All India Rank 7733} in JEE Mains among 1 million candidates.}
+        \cvachievement{Awarded \textbf{1st prize} in the Inter IIT Art Competition.}
+    \end{itemize}
+}
+
+%=========================================================================================
+%   DOCUMENT BODY
+%=========================================================================================
+
+\begin{document}
+\makecvheader
+
+\begin{minipage}[t]{\mainwidth}
+  \cvsection{Experience}
+  \begin{itemize}[leftmargin=0em, itemsep=8pt, parsep=0pt, topsep=0pt, label={}]
+    \begin{cvevent}{Founder \& CEO}{Shopdeck}{Aug 2022 -- Present}{Bengaluru, India}
+        \item Managed a key program to enhance user acquisition, coordinating with tech teams and delivering 5.5K+ monthly users
+        \item Drove process improvements by analyzing CX data, leading to a 50\% increase in user journey conversion.
+        \item Led go-to-market (GTM) strategy and execution, scaling the company to \$120K ARR within 12 months with a lean team of 15.
+        \item Reduced customer support tickets by 40\% by developing proactive communication workflows and process automation.
+    \end{cvevent}
+
+    \begin{cvevent}{Program Manager}{BharatX}{May 2022 -- Aug 2022}{Bengaluru, India}
+        \item Spearheaded a strategic program to streamline the customer journey, increasing feature adoption by 25\% across the user base.
+        \item Collaborated with Engineering and Product teams to define project scope, track milestones, and mitigate risks for 3 major feature releases.
+        \item Authored detailed PRDs and technical specification documents to ensure clarity and alignment across all cross-functional teams.
+    \end{cvevent}
+
+    \begin{cvevent}{Co-founder}{Upfluen}{Apr 2021 -- May 2022}{Remote}
+        \item Built and launched an influencer marketing platform, acquiring the first 100 paid users through targeted outreach and product demos.
+        \item Designed and managed the product roadmap, prioritizing features based on user feedback and market analysis to drive engagement.
+    \end{cvevent}
+  \end{itemize}
+
+  \cvsection{Projects}
+  \begin{itemize}[leftmargin=0em, itemsep=8pt, parsep=0pt, topsep=0pt, label={}]
+    \begin{cvevent}{AI-Powered Resume Builder}{Personal Project}{2023}{}
+        \item Developed a web application using OpenAI's API to help users tailor their resumes to specific job descriptions, improving keyword match rates and relevance.
+        \item Implemented a user-friendly interface with Streamlit and deployed the application on a cloud platform.
+    \end{cvevent}
+    \begin{cvevent}{E-commerce Price Tracker}{Personal Project}{2021}{}
+        \item Engineered a Python script to scrape pricing data from major e-commerce sites, providing users with price drop alerts via email.
+        \item Utilized Beautiful Soup for web scraping and SMTP for email automation, running the script on a scheduled basis.
+    \end{cvevent}
+  \end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{\sidebarwidth}
+  \sidebarcontent
+\end{minipage}
+
+\end{document}
