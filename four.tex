@@ -1,0 +1,273 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{fontawesome}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage[skins]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{dashrule}
+\usepackage{multirow,tabularx}
+\usepackage{changepage}
+\usepackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
+\usepackage{afterpage}
+
+\geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1cm,top=1.5cm,bottom=1cm,footskip=2\baselineskip}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{lato}
+
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\colorlet{heading}{Sepia}
+\colorlet{accent}{Black}
+\definecolor{Mulberry}{HTML}{1E90FF} 
+\definecolor{LightGrey}{HTML}{87CEFA} 
+\colorlet{heading}{RoyalBlue} 
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{black!80!white}
+
+\newcommand{\itemmarker}{•}
+\newcommand{\ratingmarker}{\faCircle}
+\renewcommand{\itemmarker}{•}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vskip0.25\baselineskip}
+\setlist[itemize]{label=\itemmarker}
+
+\setlength{\parindent}{0pt}
+\newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
+
+\newenvironment{fullwidth}{%
+  \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
+  {\end{adjustwidth}}
+
+\newcommand{\emailsymbol}{\faAt}
+\newcommand{\phonesymbol}{\faPhone}
+\newcommand{\homepagesymbol}{\faChain}
+\newcommand{\locationsymbol}{\faMapMarker}
+\newcommand{\linkedinsymbol}{\faLinkedin}
+\newcommand{\twittersymbol}{\faTwitter}
+\newcommand{\githubsymbol}{\faGithub}
+\newcommand{\mailsymbol}{\faEnvelope}
+
+\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
+
+\newcommand{\cvname}[1]{\gdef\thecvname{#1}}
+\newcommand{\cvtagline}[1]{\gdef\thecvtagline{#1}}
+\newcommand{\cvpersonalinfo}[1]{\gdef\thecvpersonalinfo{#1}}
+\newcommand{\email}[1]{\printinfo{\emailsymbol}{#1}}
+\newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
+\newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
+\newcommand{\homepage}[1]{\printinfo{\homepagesymbol}{#1}}
+\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
+\newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
+\newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
+\newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
+\newcommand{\personalinfo}[1]{\cvpersonalinfo{#1}}
+
+\newcommand{\makecvheader}{%
+  \begingroup
+    \raggedright\color{emphasis}%
+    {\Huge\bfseries\thecvname\par}
+    \medskip
+    {\large\bfseries\color{accent}\thecvtagline\par}
+    \medskip
+    {\footnotesize\bfseries\thecvpersonalinfo\par}
+  \endgroup\medskip
+}
+
+\newcommand{\cvsection}[2][]{%
+  \bigskip%
+  \ifstrequal{#1}{page1sidebar}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\sidebarContent}}{}%
+  {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\[-1ex]%
+  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+}
+
+\newcommand{\cvsubsection}[1]{%
+  \smallskip%
+  {\color{emphasis}\large\bfseries{#1}\par}\medskip
+}
+
+\newcommand{\cvevent}[4]{%
+  {\large\color{emphasis}#1\par}
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{
+  \textbf{\color{accent}#2}\par
+  \smallskip}
+  \ifstrequal{#3}{}{}{#3}%
+  \ifstrequal{#4}{}{}{ | #4}\par
+  \medskip
+}
+
+\newcommand{\cvachievement}[3]{%
+  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
+  \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\
+  & #3
+  \end{tabularx}%
+  \smallskip
+}
+
+\newcommand{\cvtag}[1]{%
+  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+}
+
+\newenvironment{cvparagraph}{\begin{quote}}{\end{quote}}
+\renewenvironment{quote}{\color{accent}\itshape\large}{\par}
+
+\newcommand{\sidebarContent}{%
+{\color{heading}\LARGE\bfseries\MakeUppercase{Education}}\[-1ex]%
+{\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+
+{\large\color{emphasis}B-Tech - Indian Institute of Technology, Kanpur\par}
+\smallskip\normalsize
+2018 - 2022 | Kanpur,UP\par
+\medskip
+CGPA - 7.20/10
+
+\bigskip
+{\color{heading}\LARGE\bfseries\MakeUppercase{Skills}}\[-1ex]%
+{\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+\cvtag{Prompt Engineering}
+\cvtag{Meta Marketing}
+\cvtag{Growth Hacking}
+\cvtag{GTM Strategy}
+\cvtag{Market Research}
+\cvtag{Program Management}
+\cvtag{Advanced Excel}
+\cvtag{Data-Driven Decision Making}
+\cvtag{Root Cause Analysis}
+\cvtag{Project Management}
+\cvtag{Process Improvement}
+\cvtag{Negotiation}
+\cvtag{Customer Success}
+\cvtag{Stakeholder Mgmt.}
+\cvtag{AB Testing}
+\cvtag{KPI Tracking}
+\cvtag{Team player}
+
+\bigskip
+{\color{heading}\LARGE\bfseries\MakeUppercase{Technical Skills}}\[-1ex]%
+{\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+
+\textbf{Tools}
+\cvtag{Cursor}
+\cvtag{Bolt.new}
+\cvtag{n8n}
+\cvtag{Zapier}
+\cvtag{Meta Ads}
+\cvtag{LinkedIn}
+\cvtag{Dripify} 
+\cvtag{Phantombuster}
+\cvtag{Apollo.io}
+\cvtag{Postman}
+\cvtag{Grafana}
+\cvtag{Github}
+
+\textbf{Languages}
+\cvtag{Java} 
+\cvtag{C++}
+\cvtag{Python}
+\cvtag{SQL}
+
+\textbf{Practices}
+\cvtag{Agile}
+\cvtag{Scrum}
+
+\bigskip
+{\color{heading}\LARGE\bfseries\MakeUppercase{Achievements}}\[-1ex]%
+{\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+
+\cvachievement{\faTrophy}{2022}{Secured \textbf{99.53 Percentile} in Indian Institute of Management Common Admission Test}
+
+\divider
+
+\cvachievement{\faTrophy}{2021}{Secured \textbf{1st prize} in the Inter IIT Art Competition on the theme of Emotion}
+
+\divider
+
+\cvachievement{\faTrophy}{2018}{Secured \textbf{All India Rank 4719} in Joint Entrance Exam (JEE) - Advanced among the 0.16 million candidates }
+
+\divider
+
+\cvachievement{\faTrophy}{2018}{Secured \textbf{All India Rank 7733} in Joint Entrance Exam (JEE) - Mains among the 1 million candidates }
+
+\medskip
+}
+
+\usepackage[colorlinks,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\begin{document}
+
+\pagestyle{empty}
+\color{body}
+\raggedright
+
+\newcommand{\cvtagwhite}[1]{%
+  \mbox{\tikz[baseline=-0.6ex]%
+    \node[anchor=base, draw=none, rounded corners=0.2ex, inner sep=0.4ex, text=white, fill=white]%
+    {\small\strut #1};}%
+  }%
+
+\cvname{\textcolor{SlateGrey}{SHIKHAR SHARMA}}
+\cvtagline{Program Manager | Driving CX & Process Improvements with Data}
+
+\personalinfo{%
+  \phone {+919084895099}
+  \mailaddress {shikharparhoon@gmail.com}
+  \location {Bangalore, India}
+  \linkedin  {\href{https://linkedin.com/in/shikharparhoon}{\textcolor{SlateGrey}{linkedin}}}
+  \faGlobe \, {\href{https://pleasant-fifth-cc3.notion.site/Shikhar-Sharma-Backend-Developer-8f5b5fa02dc94425a97e6fefac0bea9a}{\textcolor{SlateGrey}{website}}}
+}
+
+\begin{fullwidth}
+\makecvheader
+\end{fullwidth}
+
+\cvsection[page1sidebar]{Experience}
+
+\cvevent{\textbf{Shopdeck} {\small (D2C Enabler)}}{Program Manager Business Growth}{November 2024 - Present}{}
+\begin{itemize}
+\item  Managed a key program to enhance user acquisition, coordinating with tech teams and delivering \textbf{5.5K+} monthly users
+\item Drove process improvements by analyzing CX data, leading to a \textbf{50\%} increase in user journey conversion.
+\item Developed dashboards, analyzed marketing data to drive strategic decisions and presented key insights to stakeholders
+\item Designed Amazon products scraping engine for data extraction, processing \textbf{6.4M} products, generating \textbf{30K+} seller leads
+\item  Spearheaded strategy for a WhatsApp scraping, enabling extraction of \textbf{10 million} business accounts; guided tech team in implementation
+\item Collaborated with tech, design, business and product teams for successful implementation of Scraping and Marketing projects
+\end{itemize}
+
+\cvevent{\textbf{BharatX YC-22} {\small (Checkout Financing Fintech)}}{Consultant Product Growth (Part-time)}{July 2024 -- Oct 2024}  {Bengaluru}
+\begin{itemize}
+\item Developed cold outreach automation, achieved a \textbf{45\% }reply rate and a \textbf{25\%} demo conversion rate, which reduced manual effort by \textbf{95\% }
+\item Managed the renegotiation of agreements with \textbf{250+ top D2C merchants} after the RBI shutdown of our NBFC partner
+\item Automated agreement generation and led email/WhatsApp campaigns, achieving an \textbf{87\% response rate} 
+\end{itemize}
+
+\cvevent{\textbf{Incerto Technologies} {\small (Observability for Fintechs)}}{Co-Founder (Bootstrapped)}{July 2023 -- Oct 2024}  {Bengaluru}
+\begin{itemize}
+\item Founded Incerto, providing Observability as a service leveraging 3 OSS tools \textbf{Grafana, Opentelemetry and Clickhouse}
+\item Identified and leveraged \textbf{10+ growth channels} to find our ideal customers, creating effective \textbf{outbound and inbound strategies}
+\item Conducted \textbf{market research}, defined \textbf{ICPs}, led \textbf{Growth and Sales} and secured \textbf{6 major deals}, contributing to revenue of \textbf{INR 5M+}
+\end{itemize}
+
+\cvevent{\textbf{Unicards Technologies} {\small (B2C Lending Fintech Startup)}}{Backend Developer}{June 2022 -- July 2023}  {Bengaluru}
+\begin{itemize}
+\item \textbf{Nach Service}: Spearheaded the development, wrote \textbf{8 robust APIs} to seamlessly integrate \textbf{2 internal microservices and Razorpay}
+\item \textbf{Risk Service}: Authored Credit Card Risk engine within the risk service, increased the test coverage of service from \textbf{30\% to 80\%}
+\item Collaborated with risk team to implement risk assessment rules,
+drastically reducing credit fraud by \textbf{2 Cr per month}
+\end{itemize}
+
+\cvevent{\textbf{Dearwoods Pvt Ltd} {\small (D2C Online Wooden Decal)}}{Founder}{June 2020 - July 2021}{}
+\begin{itemize}
+\item Manufactured and sold wooden decals and portraits,\textbf{ PAN India}
+\item Reached \textbf{21M}+ audience reach via \textbf{innovative marketing strategies}
+\item Made the company \textbf{profitable in 3 months}, generating \textbf{INR 5L}
+\end{itemize}
+
+\end{document}
