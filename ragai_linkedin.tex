@@ -93,7 +93,7 @@
 % CV section command with inline sidebar support
 \newcommand{\cvsection}[2][]{%
   \bigskip%
-  \ifstrequal{#1}{page1sidebar}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\sidebarContent}}{}%
+  \ifstrequal{#1}{page1sidebar}{\marginpar{\vspace*{1.5\baselineskip}\raggedright\sidebarContent}}{}%
   {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
   {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 }
@@ -104,25 +104,18 @@
 }
 
 \newcommand{\cvevent}[4]{%
-  \begin{minipage}[t]{\linewidth}
-    \begin{minipage}[t]{0.7\linewidth}
-      {\large\color{emphasis}#1\par}
-      \ifstrequal{#2}{}{}{%
-        \smallskip
-        \textbf{\color{accent}#2}\par}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[t]{0.28\linewidth}
-      \raggedleft
-      \ifstrequal{#3}{}{}{\small #3\par}
-      \ifstrequal{#4}{}{}{\small #4\par}
-    \end{minipage}
-  \end{minipage}
+  {\large\color{emphasis}#1\par}
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{
+  \textbf{\color{accent}#2}\par
+  \smallskip}
+  \ifstrequal{#3}{}{}{#3}%
+  \ifstrequal{#4}{}{}{ | #4}\par
   \medskip
 }
 
 \newcommand{\cvachievement}[3]{%
-  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}}  >{\raggedright\arraybackslash}X@{}}
+  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
   \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
   & #3
   \end{tabularx}%
@@ -142,33 +135,31 @@
 {\color{heading}\LARGE\bfseries\MakeUppercase{Education}}\\[-1ex]%
 {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 
-\begin{minipage}{\linewidth}
-  {\large\color{emphasis}B-Tech - Indian Institute of Technology, Kanpur\par}
-  \smallskip
-  {\small 2018 - 2022 | Kanpur, UP\par}
-  \smallskip
-  {\small CGPA - 7.20/10\par}
-\end{minipage}
+{\large\color{emphasis}B-Tech - Indian Institute of Technology, Kanpur\par}
+\smallskip\normalsize
+2018 - 2022 | Kanpur,UP\par
+\medskip
+CGPA - 7.20/10
 
 \bigskip
 {\color{heading}\LARGE\bfseries\MakeUppercase{Skills}}\\[-1ex]%
 {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 
 \cvtag{Prompt Engineering}
-\cvtag{AI/ML Products}
+\cvtag{Meta Marketing}
 \cvtag{Growth Hacking}
 \cvtag{GTM Strategy}
 \cvtag{Market Research}
-\cvtag{Strategic Planning}\\
-\cvtag{Product Roadmap}
+\cvtag{Strategic Planning}
+\cvtag{Email Marketing}
 \cvtag{Data-Driven Decision Making}
-\cvtag{Product Specifications}\\
-\cvtag{SaaS Product Management}
-\cvtag{Technical Documentation}\\
-\cvtag{AI Strategy}
+\cvtag{Sales and Business Development}
+\cvtag{Cold Outreach Automation}
+\cvtag{Lead Generation and Qualification}
+\cvtag{Negotiation}
 \cvtag{Customer Success}
 \cvtag{Digital Marketing}
-\cvtag{AB Testing}\\
+\cvtag{AB Testing}
 \cvtag{KPI Tracking}
 \cvtag{Team player}
 
@@ -176,7 +167,7 @@
 {\color{heading}\LARGE\bfseries\MakeUppercase{Technical Skills}}\\[-1ex]%
 {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
 
-\textbf{Tools}\\
+\textbf{Tools}
 \cvtag{Cursor}
 \cvtag{Bolt.new}
 \cvtag{n8n}
@@ -190,15 +181,13 @@
 \cvtag{Grafana}
 \cvtag{Github}
 
-\smallskip
-\textbf{Languages}\\
+\textbf{Languages}
 \cvtag{Java} 
 \cvtag{C++}
 \cvtag{Python}
 \cvtag{SQL}
 
-\smallskip
-\textbf{Practices}\\
+\textbf{Practices}
 \cvtag{Agile}
 \cvtag{Scrum}
 
@@ -237,7 +226,7 @@
 }
 
 \cvname{\textcolor{SlateGrey}{SHIKHAR SHARMA}}
-\cvtagline{AI-focused Product \& Growth Leader | SaaS \& Fintech Experience}
+\cvtagline{Product and Growth ( Ex-Founder | Driving Growth in Fintech \& D2C)}
 
 \personalinfo{%
   \phone {+919084895099}
@@ -256,7 +245,7 @@
 \cvevent{\textbf{Shopdeck} {\small (D2C Enabler)}}{Program Manager Business Growth}{November 2024 - Present}{}
 \begin{itemize}
 \item  Implemented and led Meta Marketing for lead generation, driving \textbf{5,500+} monthly leads with a budget of \textbf{INR 5 Million}
-\item Designed product-led growth strategies and A/B tested funnels, boosting lead conversion by \textbf{50\% MoM}.
+\item Achieved a \textbf{50\% MoM} increase in lead conversion through the implementation of new marketing strategies.
 \item Developed dashboards, analyzed marketing data to drive strategic decisions and presented key insights to stakeholders
 \item Designed Amazon products scraping engine for data extraction, processing \textbf{6.4M} products, generating \textbf{30K+} seller leads
 \item  Spearheaded strategy for a WhatsApp scraping, enabling extraction of \textbf{10 million} business accounts; guided tech team in implementation
@@ -266,7 +255,7 @@
 \cvevent{\textbf{BharatX YC-22} {\small (Checkout Financing Fintech)}}{Consultant Product Growth (Part-time)}{July 2024 -- Oct 2024}  {Bengaluru}
 \begin{itemize}
 \item Developed cold outreach automation, achieved a \textbf{45\% }reply rate and a \textbf{25\%} demo conversion rate, which reduced manual effort by \textbf{95\% }
-\item Authored product specs for new partner APIs, ensuring business continuity \& compliance for \textbf{250+ enterprise merchants}.
+\item Managed the renegotiation of agreements with \textbf{250+ top D2C merchants} after the RBI shutdown of our NBFC partner
 \item Automated agreement generation and led email/WhatsApp campaigns, achieving an \textbf{87\% response rate} 
 \end{itemize}
 
